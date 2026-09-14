@@ -1,0 +1,7 @@
+.vagrant/
+*.vdi
+*.vmdk
+*.box
+*.pem
+*.key
+*.log

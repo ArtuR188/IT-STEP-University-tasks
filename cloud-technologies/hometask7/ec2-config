@@ -1,0 +1,12 @@
+#!/bin/bash
+
+aws ec2 run-instances \
+  --image-id ami-053b0d53c279acc90 \
+  --count 1 \
+  --instance-type t3.micro \
+  --key-name UbuntuKey \
+  --subnet-id subnet-0837944fa2a2c8124 \
+  --security-group-ids sg-060a0017c16b3b8bb \
+  --iam-instance-profile Name=EC2SSMRole \
+  --user-data file://user-data.sh \
+  --region us-east-1

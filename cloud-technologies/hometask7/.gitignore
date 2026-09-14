@@ -1,0 +1,11 @@
+*.pem
+*.key
+*.crt
+*.pub
+
+# logs
+*.log
+logs/
+var/log/
+
+*.pid

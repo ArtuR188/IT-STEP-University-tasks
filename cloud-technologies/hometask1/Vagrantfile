@@ -1,0 +1,21 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/centos9s"
+
+  config.vm.network "forwarded_port", guest: 80, host: 8888
+
+  config.vm.provision "shell", inline: <<-SHELL
+    yum install -y epel-release
+    yum install -y nginx
+    setenforce 0
+    sed -i 's/SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
+
+    systemctl stop firewalld
+    systemctl disable firewalld
+
+    mkdir -p /www-content
+    cp -r /vagrant/www-content/* /www-content/
+
+    systemctl enable nginx
+    systemctl start nginx
+  SHELL
+end

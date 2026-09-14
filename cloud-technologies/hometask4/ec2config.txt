@@ -1,0 +1,13 @@
+REGION="us-east-1"
+AMI_ID="ami-053b0d53c279acc90"
+TYPE="t3.micro"
+
+EC2_PROFILE="ec2-role-hometask4"
+
+KEY_PAIR="hometask4-key"
+SSH_KEY_FILE="/c/Users/Artur/.ssh/hometask4-key.pem"
+
+USER_DATA_PATH="file://userdata.sh"
+
+SG="sg-060a0017c16b3b8bb"
+TAG="lab4"

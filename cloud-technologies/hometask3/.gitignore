@@ -1,0 +1,25 @@
+# SSH keys
+*.pem
+*.key
+
+# Bash history
+*.log
+*.save
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Windows / Linux artifacts
+Desktop.ini
+
+# Compiled scripts
+*.out
+
+# AWS CLI cache
+.aws/

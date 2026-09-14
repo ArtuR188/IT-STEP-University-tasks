@@ -1,0 +1,6 @@
+# SSH keys
+*.pem
+
+# Temporary files
+*.log
+*.tmp

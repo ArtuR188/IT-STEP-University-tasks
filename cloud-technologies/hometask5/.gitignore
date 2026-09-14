@@ -1,0 +1,19 @@
+# SSH keys
+*.pem
+
+# Linux temporary files
+*.log
+*.save
+*.tmp
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Windows / Linux artifacts
+Desktop.ini
+
+# Backup and generated files
+*~

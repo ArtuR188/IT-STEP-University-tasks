@@ -1,0 +1,38 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/ubuntu2204"
+
+  (1..4).each do |i|
+    config.vm.disk :disk, size: "400MB", name: "disk#{i}"
+  end
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 1024
+    vb.cpus = 1
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sleep 5
+
+    parted -a optimal --script /dev/sdb mklabel gpt mkpart primary ext4 0% 100% set 1 lvm on
+    parted -a optimal --script /dev/sdc mklabel gpt mkpart primary ext4 0% 100% set 1 lvm on
+    parted -a optimal --script /dev/sdd mklabel gpt mkpart primary ext4 0% 100% set 1 lvm on
+    parted -a optimal --script /dev/sde mklabel gpt mkpart primary ext4 0% 100% set 1 lvm on
+
+    pvcreate /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1
+    vgcreate vgdata /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1
+
+    lvcreate -n vol0 -L 800M vgdata
+    lvcreate -n vol1 -l 100%FREE vgdata
+
+
+    mkfs.ext4 /dev/vgdata/vol0
+    mkfs.ext4 /dev/vgdata/vol1
+
+    mkdir -p /mnt/vol0 /mnt/vol1
+
+    echo "/dev/vgdata/vol0 /mnt/vol0 ext4 defaults 0 0" >> /etc/fstab
+    echo "/dev/vgdata/vol1 /mnt/vol1 ext4 defaults 0 0" >> /etc/fstab
+
+    mount -a
+  SHELL
+end

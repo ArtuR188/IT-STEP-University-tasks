@@ -1,0 +1,12 @@
+*.pem
+*.key
+*.log
+*.save
+*.tmp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
