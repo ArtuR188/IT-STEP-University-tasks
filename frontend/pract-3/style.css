@@ -1,0 +1,182 @@
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image:  url(file:///C:/Users/Artur/OneDrive/%D0%A0%D0%BE%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D1%96%D0%BB/html%20css%20prakt/pract%203/img/1.webp);
+    margin: 0;
+}
+
+.text2 {
+    color: white;
+    font-weight: 100;
+    font-size: 30px;
+    text-align: left;
+}
+
+.text1 {
+    color: white;
+    font-weight: 100;
+    font-size: 30px;
+    text-align: left;
+}
+
+.logo {
+    width: 40px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    width: 50%;
+    margin-left: 2%;
+}
+.project {
+    position: absolute;
+    right: 3%;
+    top: 20px;
+    background-color: transparent;
+    color: white;
+    padding: 8px 32px 8px 32px;
+    border: 4px solid;
+}
+
+.texts {
+    width: 27%;
+    height: 24%;
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+}
+
+.imgur {
+    width: 302px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 70%);
+}
+
+.first {
+    display: none;
+}
+
+.emblem {
+    width: 100px;
+    height: 178px;
+    position: absolute;
+    right: 20%;
+    bottom: 30px;
+}
+h2 {
+    word-spacing: 10px;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 150px;
+    margin-top: 0;
+    font-weight: lighter;
+}
+
+h3 {
+    color: white;
+    text-align: center;
+    margin-top: -32;
+}
+
+header {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 1200px) {
+    h1 {
+        display: none;
+    }
+
+    h2 {
+        font-size: 12px;
+        font-weight: 100;
+    }
+
+    h3 {
+        margin-top: 16px;
+    }
+
+    .text1 {
+        display: block;
+        margin-bottom: 0;
+    }
+
+    .second {
+        display: none;
+    }
+
+    .first {
+        position: absolute;
+        right: 15%;
+        display: block;
+    }
+
+    .imgur {
+        display: none;
+    }
+
+    h5 {
+        text-align: center;
+        color: white;
+        font-size: x-large;
+        padding-top: 130px;
+        font-weight: 100;
+        word-spacing: 10px;
+    }
+
+    .texts {
+        transform: translate(-62%, -170%);
+        top: 50%;
+        left: 50%;
+        width: 700px;
+        height: 160px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .text1 {
+        display: block;
+    }
+
+    .text2 {
+        display: none;
+    }
+
+    .emblem {
+        align-items: center;
+        position: absolute;
+        top: 40%;
+        left: 37%;
+        transform: translate(-50%, 140%);
+    }
+
+    .logo {
+        display: none;
+    }
+
+    item {
+        display: none;
+    }
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: right;
+        margin-right: 0;
+        align-items: end;
+    }
+}

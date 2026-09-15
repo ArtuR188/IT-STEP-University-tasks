@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #b2b8ba;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: scroll; 
+        }
+
+        .content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #100d0e;
+            font-size: 2em;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            color: #282a29;
+            font-size: 1.2em;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px 0;
+            width: 200px;
+            box-sizing: border-box;
+            border: 2px solid #17a2b8;
+            border-radius: 5px;
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        button {
+            background-color: #dc3545;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #17a2b8;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+
+        <h2>Завдання 1: Формула Герона </h2>
+        <label for="sideA">Enter side A:</label>
+        <input type="number" id="sideA" placeholder=" side A" required>
+        <label for="sideB">Enter side B:</label>
+        <input type="number" id="sideB" placeholder=" side B" required>
+        <label for="sideC">Enter side C:</label>
+        <input type="number" id="sideC" placeholder=" side C" required>
+        <button onclick="calculateTriangleArea()">Calculate Area</button>
+        <div id="result"></div>
+
+        <h2>Завдання 2: Знаходження площі трикутника за двома сторонами і кутом між ними</h2>
+        <label>Enter side a:</label>
+        <input type="number" id="sideA2" />
+        <label>Enter side b:</label>
+        <input type="number" id="sideB2" />
+        <label>Enter angle (in degrees):</label>
+        <input type="number" id="angle" />
+        <button onclick="calculateTriangleArea2()">Calculate</button>
+        <p id="result2"></p>
+
+        <h2>Завдання 3:  Знаходження трикутника за стороною і висотою</h2>
+        <label>Enter side:</label>
+        <input type="number" id="side3" />
+        <label>Enter height:</label>
+        <input type="number" id="height3" />
+        <button onclick="calculateTriangleArea3()">Calculate</button>
+        <p id="result3"></p>
+
+        <h2>Завдання 4: Знаходження трикутника за стороною і висотою</h2>
+        <label>Enter side:</label>
+        <input type="number" id="side4" />
+        <label>Enter height:</label>
+        <input type="number" id="height4" />
+        <button onclick="calculateTriangleArea4()">Calculate</button>
+        <p id="result4"></p>
+    
+        <h2>Завдання 5: Знаходження площі трикутника за трьома сторонами і радіусом описаного кола</h2>
+        <label>Enter side 1:</label>
+        <input type="number" id="side5a" />
+        <label>Enter side 2:</label>
+        <input type="number" id="side5b" />
+        <label>Enter side 3:</label>
+        <input type="number" id="side5c" />
+        <label>Enter circumradius:</label>
+        <input type="number" id="radius5" />
+        <button onclick="calculateTriangleArea5()">Calculate</button>
+        <p id="result5"></p>
+
+        <h2>Завдання 6: Перевірка на Палідром</h2>
+        <label>Enter a number:</label>
+        <input type="number" id="number6" />
+        <button onclick="checkPalindrome()">Check Palindrome</button>
+        <p id="result6"></p>
+
+        <h2>Завдання 7: Перевірка на Анаграму</h2>
+        <label>Enter the first word:</label>
+        <input type="text" id="word1" />
+        <label>Enter the second word:</label>
+        <input type="text" id="word2" />
+        <button onclick="checkAnagram()">Check Anagram</button>
+        <p id="result7"></p>
+
+        <h2>Завдання 8: Калькулятор Фібаначі</h2>
+        <label>Enter the Fibonacci sequence number:</label>
+        <input type="number" id="fibonacciNumber" />
+        <button onclick="calculateFibonacci()">Calculate Fibonacci</button>
+        <p id="result8"></p>
+
+        <h2>Завдання 9: Введення та перевірка числа на Фібаначі</h2>
+        <label>Enter a number to check if it belongs to Fibonacci sequence:</label>
+        <input type="number" id="fibonacciCheckNumber" />
+        <button onclick="checkFibonacci()">Check Fibonacci</button>
+        <p id="result9"></p>
+    </div>
+
+    <script>
+        function calculateTriangleArea() {
+            const sideA = parseFloat(document.getElementById('sideA').value);
+            const sideB = parseFloat(document.getElementById('sideB').value);
+            const sideC = parseFloat(document.getElementById('sideC').value);
+
+            if (isValidInput(sideA, sideB, sideC)) {
+                const s = (sideA + sideB + sideC) / 2;
+                const area = Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC));
+                document.getElementById('result').innerHTML = `Area of the triangle: ${area.toFixed(2)}`;
+            } else {
+                document.getElementById('result').innerHTML = 'Please enter valid positive numeric values for all sides.';
+            }
+        }
+
+        function calculateTriangleArea2() {
+            const sideA = parseFloat(document.getElementById('sideA2').value);
+            const sideB = parseFloat(document.getElementById('sideB2').value);
+            const angle = parseFloat(document.getElementById('angle').value);
+
+            if (isValidInput(sideA, sideB, angle)) {
+                const area = (1 / 2) * sideA * sideB * Math.sin(degreesToRadians(angle));
+                document.getElementById('result2').innerHTML = `Triangle Area: ${area.toFixed(2)}`;
+            } else {
+                document.getElementById('result2').innerHTML = 'Invalid input';
+            }
+        }
+
+        function calculateTriangleArea3() {
+            const side = parseFloat(document.getElementById('side3').value);
+            const height = parseFloat(document.getElementById('height3').value);
+
+            if (isValidInput(side, height)) {
+                const area = (1 / 2) * side * height;
+                document.getElementById('result3').innerHTML = `Triangle Area: ${area.toFixed(2)}`;
+            } else {
+                document.getElementById('result3').innerHTML = 'Invalid input';
+            }
+        }
+
+        function calculateTriangleArea4() {
+            const side = parseFloat(document.getElementById('side4').value);
+            const height = parseFloat(document.getElementById('height4').value);
+
+            if (isValidInput(side, height)) {
+                const area = (1 / 2) * side * height;
+                document.getElementById('result4').innerHTML = `Triangle Area: ${area.toFixed(2)}`;
+            } else {
+                document.getElementById('result4').innerHTML = 'Invalid input';
+            }
+        }
+
+        function calculateTriangleArea5() {
+            const side1 = parseFloat(document.getElementById('side5a').value);
+            const side2 = parseFloat(document.getElementById('side5b').value);
+            const side3 = parseFloat(document.getElementById('side5c').value);
+            const radius = parseFloat(document.getElementById('radius5').value);
+
+            if (isValidInput(side1, side2, side3, radius)) {
+                const semiperimeter = (side1 + side2 + side3) / 2;
+                const area = (side1 * side2 * side3) / (4 * radius);
+                document.getElementById('result5').innerHTML = `Triangle Area: ${area.toFixed(2)}`;
+            } else {
+                document.getElementById('result5').innerHTML = 'Invalid input';
+            }
+        }
+
+        function checkPalindrome() {
+            const number = document.getElementById('number6').value;
+
+            if (isValidInput(number)) {
+                const reversedNumber = number.toString().split('').reverse().join('');
+                const isPalindrome = number.toString() === reversedNumber;
+
+                document.getElementById('result6').innerHTML = isPalindrome
+                    ? `${number} is a Palindrome!`
+                    : `${number} is not a Palindrome.`;
+            } else {
+                document.getElementById('result6').innerHTML = 'Invalid input';
+            }
+        }
+
+        function checkAnagram() {
+            const word1 = document.getElementById('word1').value.toLowerCase();
+            const word2 = document.getElementById('word2').value.toLowerCase();
+
+            if (isValidInput(word1) && isValidInput(word2)) {
+                const sortedWord1 = sortString(word1);
+                const sortedWord2 = sortString(word2);
+                const isAnagram = sortedWord1 === sortedWord2;
+
+                document.getElementById('result7').innerHTML = isAnagram
+                    ? 'Anagram!'
+                    : 'Not an Anagram.';
+            } else {
+                document.getElementById('result7').innerHTML = 'Invalid input';
+            }
+        }
+
+        function calculateFibonacci() {
+            const fibonacciNumber = document.getElementById('fibonacciNumber').value;
+
+            if (isValidInput(fibonacciNumber)) {
+                const result = fibonacci(parseInt(fibonacciNumber));
+                document.getElementById('result8').innerHTML = `Fibonacci(${fibonacciNumber}) = ${result}`;
+            } else {
+                document.getElementById('result8').innerHTML = 'Invalid input';
+            }
+        }
+
+        function checkFibonacci() {
+            const fibonacciCheckNumber = document.getElementById('fibonacciCheckNumber').value;
+
+            if (isValidInput(fibonacciCheckNumber)) {
+                const result = isFibonacci(parseInt(fibonacciCheckNumber));
+                const message = result ? 'belongs to' : 'does not belong to';
+                document.getElementById('result9').innerHTML = `${fibonacciCheckNumber} ${message} Fibonacci sequence`;
+            } else {
+                document.getElementById('result9').innerHTML = 'Invalid input';
+            }
+        }
+
+        function isFibonacci(n) {
+            return isPerfectSquare(5 * n * n + 4) || isPerfectSquare(5 * n * n - 4);
+        }
+
+        function isPerfectSquare(x) {
+            const sqrtX = Math.sqrt(x);
+            return sqrtX === Math.floor(sqrtX);
+        }
+
+        function isValidInput(...inputs) {
+            return inputs.every(input => !isNaN(input) && input > 0);
+        }
+
+        function degreesToRadians(degrees) {
+            return (degrees * Math.PI) / 180;
+        }
+
+        function sortString(str) {
+            return str.split('').sort().join('');
+        }
+    </script>
+
+</body>
+</html>
